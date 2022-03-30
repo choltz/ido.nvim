@@ -27,8 +27,8 @@ function ido_browser()
       ["<BS>"]     = 'ido_browser_backspace',
       ["<Return>"] = 'ido_browser_accept',
       ["<Tab>"]    = 'ido_browser_prefix',
-      ["<Right>"]  = 'ido_cursor_move_right',
-      ["<Left>"]   = 'ido_cursor_move_left'
+      ["<Right>"]  = 'ido_next_item',
+      ["<Left>"]   = 'ido_prev_item'
     },
 
     on_enter = function(s) directory_name = vim.loop.cwd() end
