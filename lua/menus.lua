@@ -15,7 +15,7 @@ end
 function ido_browser()
   directory_name = vim.api.nvim_buf_get_name(0):gsub("/[^/]+$", "")
 
-  if directory_name == 0 then
+  if directory_name == '' then
     directory_name = vim.loop.cwd()
   end
 
