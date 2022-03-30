@@ -13,9 +13,11 @@ end
 -- }}}
 -- Directory Browser -{{{
 function ido_browser()
-  -- directory_name = vim.loop.cwd()
-  -- directory_name = vim.loop.cwd() .. "/" .. vim.fn.expand('%'):gsub("/[^/]+$", "")
   directory_name = vim.api.nvim_buf_get_name(0):gsub("/[^/]+$", "")
+
+  if directory_name == 0 then
+    directory_name = vim.loop.cwd()
+  end
 
   ido_browser_set_prompt()
 
