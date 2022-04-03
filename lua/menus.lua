@@ -26,7 +26,7 @@ function ido_browser()
   return ido_complete {
     prompt = ido_prompt:gsub(' $', ''),
     items = fn.systemlist('ls -A ' .. fn.fnameescape(directory_name)),
-
+    ido_overlap_statusline = true,
     keybinds = {
       ["<BS>"]     = 'ido_browser_backspace',
       ["<Return>"] = 'ido_browser_accept',
