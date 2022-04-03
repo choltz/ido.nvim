@@ -32,10 +32,11 @@ function ido_browser()
       ["<Right>"]  = 'ido_next_item',
       ["<Left>"]   = 'ido_prev_item'
     },
-    ido_minimal_mode = true,
+    prompt = 'Find file:',
     on_enter = function(s) directory_name = vim.loop.cwd() end
   }
 
+-- print(ido_complete({prompt = 'Choose: ', items = {'red', 'green', 'blue'}}))
 end
 -- }}}
 -- Custom backspace in ido_browser -{{{
