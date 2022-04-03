@@ -32,7 +32,7 @@ function ido_browser()
       ["<Right>"]  = 'ido_next_item',
       ["<Left>"]   = 'ido_prev_item'
     },
-
+    ido_minimal_mode = true,
     on_enter = function(s) directory_name = vim.loop.cwd() end
   }
 
