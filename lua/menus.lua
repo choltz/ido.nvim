@@ -5,11 +5,13 @@ local directory_name
 
 -- Set the prompt -{{{
 local function ido_browser_set_prompt()
-
   -- This is an action used more than once, so I decided to abstract it out into a function.
-  ido_prompt = string.format("Browse (%s): ",
+  -- ido_prompt = string.format("Browse (%s): ",
+  ido_prompt = string.format("Find file: %s/",
+
   string.gsub(fn.resolve(directory_name), '^' .. os.getenv('HOME'), '~'))
 end
+
 -- }}}
 -- Directory Browser -{{{
 function ido_browser()
@@ -32,7 +34,6 @@ function ido_browser()
       ["<Right>"]  = 'ido_next_item',
       ["<Left>"]   = 'ido_prev_item'
     },
-    prompt = 'Find file:',
     on_enter = function(s) directory_name = vim.loop.cwd() end
   }
 
