@@ -73,7 +73,8 @@ ido_keybindings = {
 
   ["<Tab>"]     = 'ido_complete_prefix',
   ["<C-n>"]     = 'ido_next_item',
-  ["<C-p>"]     = 'ido_prev_item'
+  ["<C-p>"]     = 'ido_prev_item',
+  ["<C-d>"]     = 'ido_open_directory'
 }
 
 function ido_map_keys(table)
@@ -315,6 +316,11 @@ function ido_prev_item()
   end
   return ''
 end
+
+function ido_open_directory()
+  print("open directory")
+end
+
 -- }}}
 -- Complete the prefix -{{{
 function ido_complete_prefix()
