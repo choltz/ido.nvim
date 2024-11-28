@@ -318,7 +318,7 @@ function ido_prev_item()
 end
 
 function ido_open_directory()
-  print("open directory")
+  print(ido_pattern_text)
 end
 
 -- }}}
