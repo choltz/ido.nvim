@@ -541,7 +541,7 @@ local function ido_minimal_render()
   .. ido_decorations["matchend"]:gsub('\n', '')) + 1
 
   api.nvim_command('echohl IdoPrompt')
-  ido_minimal_print(ido_prompt)
+  ido_minimal_print(trim(ido_prompt))
   api.nvim_command('echohl IdoNormal')
 
   if ido_before_cursor:len() > 0 then
