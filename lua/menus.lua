@@ -88,3 +88,7 @@ function ido_open_directory()
   ido_close_window()
   vim.cmd('edit ' .. directory_name)
 end
+
+function trim(string)
+  return string:match("^%s*(.-)%s*$")
+end

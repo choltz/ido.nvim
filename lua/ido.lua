@@ -491,6 +491,7 @@ local function ido_render()
     matched_text = ""
   end
 
+  ido_prompt = trim(ido_prompt)
   ido_render_text = ido_prompt .. ido_pattern_text .. ' ' .. ido_prefix_text .. matched_text
   split_matches_lines()
   render_list = string.split(ido_render_text, '\n')
