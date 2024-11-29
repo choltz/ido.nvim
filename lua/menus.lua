@@ -85,5 +85,6 @@ end
 -- }}}
 
 function ido_open_directory()
+  ido_close_window()
   vim.cmd('edit ' .. directory_name)
 end
