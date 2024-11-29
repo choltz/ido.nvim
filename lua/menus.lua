@@ -93,6 +93,6 @@ function trim(string)
   return string:match("^%s*(.-)%s*$")
 end
 
-function directory_name()
+function ido_directory_name()
   return directory_name
 end
