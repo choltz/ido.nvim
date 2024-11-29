@@ -317,10 +317,6 @@ function ido_prev_item()
   return ''
 end
 
-function ido_open_directory()
-  print(ido_pattern_text)
-end
-
 -- }}}
 -- Complete the prefix -{{{
 function ido_complete_prefix()

@@ -83,3 +83,7 @@ function ido_browser_prefix()
   end
 end
 -- }}}
+
+function ido_open_directory()
+  vim.cmd('edit ' .. directory_name)
+end
