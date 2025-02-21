@@ -2,6 +2,7 @@ require "ido"
 local api = vim.api
 local fn = vim.fn
 local directory_name
+local directory_cache = {}
 
 -- Set the prompt -{{{
 local function ido_browser_set_prompt()
@@ -60,15 +61,28 @@ function ido_browser_accept()
     ido_current_item = ido_pattern_text
   end
 
+
   if fn.isdirectory(directory_name .. '/' .. ido_current_item) == 1 then
+    directory_cache[directory_name] = ido_current_item
+
     directory_name = directory_name .. '/' .. ido_current_item
     ido_match_list = fn.systemlist('ls -A ' .. fn.fnameescape(directory_name))
     ido_pattern_text, ido_before_cursor, ido_after_cursor = '', '', ''
     ido_cursor_position = 1
+
     ido_get_matches()
     ido_browser_set_prompt()
   else
     ido_close_window()
+
+    directory_cache[directory_name] = ido_current_item
+
+    print("*************************")
+    for key, value in pairs(directory_cache) do
+      print(key, value)
+    end
+    print("*************************")
+
     return vim.cmd('edit ' .. directory_name .. '/' .. ido_current_item)
   end
 end
