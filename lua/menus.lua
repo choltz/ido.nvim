@@ -1,10 +1,14 @@
 require "ido"
-local api = vim.api
-local fn = vim.fn
+
+-- Convenience variables
+local api             = vim.api
+local fn              = vim.fn
+
+-- local variables
 local directory_name
 local directory_cache = {}
 
--- Set the prompt -{{{
+-- Set the prompt
 local function ido_browser_set_prompt()
   -- This is an action used more than once, so I decided to abstract it out into a function.
   -- ido_prompt = string.format("Browse (%s): ",
@@ -13,8 +17,7 @@ local function ido_browser_set_prompt()
   string.gsub(fn.resolve(directory_name), '^' .. os.getenv('HOME'), '~'))
 end
 
--- }}}
--- Directory Browser -{{{
+-- Directory Browser
 function ido_browser()
   directory_name = vim.api.nvim_buf_get_name(0):gsub("/[^/]+$", "")
 
@@ -41,8 +44,8 @@ function ido_browser()
 
 -- print(ido_complete({prompt = 'Choose: ', items = {'red', 'green', 'blue'}}))
 end
--- }}}
--- Custom backspace in ido_browser -{{{
+
+-- Custom backspace in ido_browser
 function ido_browser_backspace()
   if ido_pattern_text == '' then
     directory_name = fn.fnamemodify(directory_name, ':h')
@@ -54,20 +57,21 @@ function ido_browser_backspace()
     ido_key_backspace()
   end
 end
--- }}}
--- Accept current item in ido_browser -{{{
+
+-- Accept current item in ido_browser
 function ido_browser_accept()
   if ido_current_item == '' then
     ido_current_item = ido_pattern_text
   end
 
-
   if fn.isdirectory(directory_name .. '/' .. ido_current_item) == 1 then
     directory_cache[directory_name] = ido_current_item
 
-    directory_name = directory_name .. '/' .. ido_current_item
-    ido_match_list = fn.systemlist('ls -A ' .. fn.fnameescape(directory_name))
-    ido_pattern_text, ido_before_cursor, ido_after_cursor = '', '', ''
+    directory_name      = directory_name .. '/' .. ido_current_item
+    ido_match_list      = fn.systemlist('ls -A ' .. fn.fnameescape(directory_name))
+    ido_pattern_text    = ''
+    ido_before_cursor   = ''
+    ido_after_cursor    = ''
     ido_cursor_position = 1
 
     ido_get_matches()
@@ -86,8 +90,8 @@ function ido_browser_accept()
     return vim.cmd('edit ' .. directory_name .. '/' .. ido_current_item)
   end
 end
--- }}}
--- Modified prefix acception in ido_browser -{{{
+
+-- Modified prefix acception in ido_browser
 function ido_browser_prefix()
   ido_complete_prefix()
 
@@ -96,7 +100,7 @@ function ido_browser_prefix()
     ido_browser_accept()
   end
 end
--- }}}
+
 
 function ido_open_directory()
   ido_close_window()
